@@ -13,12 +13,17 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-    public Job() {
+    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
+    //  other five fields. The second constructor should also call the first in order to initialize
+    //  the 'id' field.
+
+    public Job(){
         id = nextId;
-        nextId++;
+        nextId ++;
     }
 
-    public Job(String name, Employer employer,  Location location, PositionType positionType, CoreCompetency coreCompetency) {
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+        this();
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -26,16 +31,24 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+// TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
+    //  match.
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Job job)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
+        Job job = (Job) o;
         return id == job.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hashCode(id);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -78,18 +91,40 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public String toString() {
+
+        if(name == null && employer == null && location == null && positionType == null && coreCompetency == null) {
+            return "OOPS! This job does not seem to exist";
+        }
+
+        String displayName = name;
+        String displayEmployer = employer.getValue();
+        String displayLocation = location.getValue();
+        String displayPositionType= positionType.getValue();
+        String displayCoreCompetancy = coreCompetency.getValue();
+
+// Task 5 - 3
+        if(name.isEmpty()){
+            displayName = "Data not available";
+        }if(employer.getValue().isEmpty()) {
+            displayEmployer = "Data not available";
+        }if(location.getValue().isEmpty()) {
+            displayLocation = "Data not available";
+        }if(positionType.getValue().isEmpty()) {
+            displayPositionType = "Data not available";
+        }if(coreCompetency.getValue().isEmpty()) {
+            displayCoreCompetancy = "Data not available";
+        }
+
+// Task 5 - 1 & 2
+        return System.lineSeparator() +
+                "ID: " + id +  System.lineSeparator()+
+                "Name: " + displayName  + System.lineSeparator()+
+                "Employer: " + displayEmployer + System.lineSeparator()+
+                "Location: " + displayLocation + System.lineSeparator()+
+                "Position Type: " + displayPositionType + System.lineSeparator()+
+                "Core Competency: " + displayCoreCompetancy +
+                System.lineSeparator();
     }
-
-
-    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
-
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
-
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
 }
