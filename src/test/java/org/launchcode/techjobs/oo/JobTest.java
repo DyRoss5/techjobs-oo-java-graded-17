@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
+//Task 4 - Test Empty Constructor
 public class JobTest {
     @Test
     public void testSettingJobId() {
@@ -15,6 +16,7 @@ public class JobTest {
         assertNotEquals(job1.getId(), job2.getId());
     }
 
+    //Task 4 - Test Full Constructor
     @Test
     public void testJobConstructorSetsAllFields(){
         Job newJob = new Job("Product tester", new Employer("ACME"),
@@ -35,6 +37,8 @@ public class JobTest {
         assertTrue(newJob.getName() instanceof String);
 
     }
+
+    //Task 4 - Test the equals Methods
     @Test
     public void testJobsForEquality(){
         Job jobA = new Job("Product tester",
@@ -51,6 +55,7 @@ public class JobTest {
         assertNotEquals(jobA, jobB);
     }
 
+    //Task 5 - test checks if string starts and ends with blank line
     @Test
     public void testToStringStartsAndEndsWithNewLine(){
         Job jobA = new Job("Data Base", new Employer("Citi"),
@@ -64,6 +69,7 @@ public class JobTest {
 
     private String newLine = System.lineSeparator();
 
+    //Task 5 - TDD for toString 1
     @Test
     public void testToStringContainsCorrectLabelsAndData(){
         Job testJob = new Job("Product tester",
@@ -80,6 +86,8 @@ public class JobTest {
                 "Core Competency: Data not available" +
                 newLine, testJob.toString());
     }
+
+    //Task 5 - TDD for toString 3
     @Test
     public void testToStringHandlesEmptyField() {
         Job testJob = new Job("Product tester",

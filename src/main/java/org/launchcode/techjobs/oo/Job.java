@@ -2,6 +2,7 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
+//Task 3
 public class Job {
 
     private int id;
@@ -17,11 +18,13 @@ public class Job {
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
 
+    //Task 3 - 1 Code constructor initalizing id
     public Job(){
         id = nextId;
         nextId ++;
     }
 
+    //Task 3 - 2 Second constructor that takes 5 parameters
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
         this.name = name;
@@ -34,6 +37,7 @@ public class Job {
 // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
+    //Task 3 - 5
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,10 +51,12 @@ public class Job {
         return Objects.hashCode(id);
     }
 
+    //Task 3 - 4 Getters for id
     public int getId() {
         return id;
     }
 
+    //Task 3 - 3 Getters and Setters
     public String getName() {
         return name;
     }
@@ -91,6 +97,7 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
+    //Task 5 - 4 if a Job object only contains data for the id field
     @Override
     public String toString() {
 
@@ -104,7 +111,7 @@ public class Job {
         String displayPositionType= positionType.getValue();
         String displayCoreCompetancy = coreCompetency.getValue();
 
-// Task 5 - 3
+// Task 5 - 3 if field is empty, data not available
         if(name.isEmpty()){
             displayName = "Data not available";
         }if(employer.getValue().isEmpty()) {
@@ -117,7 +124,7 @@ public class Job {
             displayCoreCompetancy = "Data not available";
         }
 
-// Task 5 - 1 & 2
+// Task 5 - 1 & 2 return a string that contains blank line,label for each field + data stored
         return System.lineSeparator() +
                 "ID: " + id +  System.lineSeparator()+
                 "Name: " + displayName  + System.lineSeparator()+
